@@ -49,6 +49,15 @@ describe("Gilded Rose", function() {
       const items = gildedRose.updateQuality();
       expect(items[0].sellIn).toEqual(4)
       expect(items[0].quality).toEqual(50)
-    })
+    });
+  });
+
+  describe("Sulfuras, Hand of Ragnaros", function() {
+    it("quality and sellIn don't change, quality is always 80", function() {
+      const gildedRose = new Shop([ new Item("Sulfuras, Hand of Ragnaros", 5, 80)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toEqual(5)
+      expect(items[0].quality).toEqual(80)
+    });
   });
 });
