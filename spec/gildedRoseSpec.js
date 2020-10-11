@@ -19,6 +19,13 @@ describe("Gilded Rose", function() {
       const items = gildedRose.updateQuality();
       expect(items[0].sellIn).toEqual(-2);
       expect(items[0].quality).toEqual(3)
-    })
+    });
+
+    it("quality never goes below 0", function() {
+      const gildedRose = new Shop([ new Item("regularItem", 2, 0)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toEqual(1);
+      expect(items[0].quality).toEqual(0);
+    });
   });
 });
