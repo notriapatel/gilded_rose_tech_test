@@ -42,6 +42,13 @@ describe("Gilded Rose", function() {
       const items = gildedRose.updateQuality();
       expect(items[0].sellIn).toEqual(-3)
       expect(items[0].quality).toEqual(7)
+    });
+
+    it("quality is capped at 50", function() {
+      const gildedRose = new Shop([ new Item("Aged Brie", 5, 50)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toEqual(4)
+      expect(items[0].quality).toEqual(50)
     })
   });
 });
