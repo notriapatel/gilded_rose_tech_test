@@ -17,6 +17,8 @@ class Shop {
         this._updateBrieQuality(item)
       } else if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
         this._updateBackstagePassQuality(item)
+      } else if (item.name == 'Conjured') {
+        this._updateConjuredQuality(item)
       } else if (item.name != 'Sulfuras, Hand of Ragnaros') {
         this._updateRegularItemQuality(item)
       }
@@ -62,6 +64,16 @@ class Shop {
         item.quality += 2
       } else {
         this._increaseQuality(item)
+      }
+    }
+  }
+
+  _updateConjuredQuality(item) {
+    if (item.quality > 0) {
+      if (item.sellIn > 0) {
+        item.quality -= 2
+      } else {
+        item.quality -= 4
       }
     }
   }
