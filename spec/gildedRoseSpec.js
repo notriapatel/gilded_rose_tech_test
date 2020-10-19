@@ -90,4 +90,27 @@ describe("Gilded Rose", function() {
       expect(items[0].quality).toEqual(0)
     });
   });
+
+  describe("Conjured", function() {
+    it("quality reduces by 2 before sellIn", function() {
+      const gildedRose = new Shop([ new Item("Conjured", 5, 5)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toEqual(4)
+      expect(items[0].quality).toEqual(3)
+    });
+
+    it("quality reduces by 4 after sellIn", function() {
+      const gildedRose = new Shop([ new Item("Conjured", -5, 5)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toEqual(-6)
+      expect(items[0].quality).toEqual(1)
+    });
+
+    it("quality never goes below 0", function() {
+      const gildedRose = new Shop([ new Item("Conjured", 5, 2)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toEqual(4)
+      expect(items[0].quality).toEqual(0)
+    });
+  });
 });
